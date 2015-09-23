@@ -85,7 +85,7 @@
 <a name="installing-the-module" class="anchor" href="#installing-the-module"><span class="octicon octicon-link"></span></a>Installing the module</h2>
 
 <h3>
-<a name="installing-the-module-for-the-user--highly-recommended-" class="anchor" href="#installing-the-module-for-the-user--highly-recommended-"><span class="octicon octicon-link"></span></a>Installing the module for the user ( highly recommended )</h3>
+<a name="installing-the-module-for-the-user--highly-recommended-" class="anchor" href="#installing-the-module-for-the-user--highly-recommended-"><span class="octicon octicon-link"></span></a>Installing the module for the user </h3>
 
 <pre><code>    $ cd pySitools2_1.0
 python setup.py install --user
@@ -100,6 +100,23 @@ sudo python setup.py install
 
 <h2>
 <a name="features" class="anchor" href="#features"><span class="octicon octicon-link"></span></a>Features</h2>
+
+<h3>
+<a name="update-the-module " class="anchor" href="#update-the-module"><span class="octicon octicon-link"></span></a>Update the module </h3>
+
+<pre><code>    $ cd pySitools2_1.0
+git pull origin master 
+sudo python setup.py install
+</code></pre>
+
+<h3>
+<a name="remove-the-module " class="anchor" href="#remove-the-module-for-the-system"><span class="octicon octicon-link"></span></a>Remove the module </h3>
+
+<pre><code>    $ cd pySitools2_1.0
+easy_install -m pySitools2_1.0
+rm -Rf /usr/local/lib/python2.7/dist-packages/pySitools2_1.0-0.1-py2.7.egg (install fir system)
+rm -Rf ~/.local/lib/python2.7/site-packages/pySitools2_1.0-0.1-py2.7.egg (install for user)
+</code></pre>
 
 <ul>
 <li>Make a search providing a date range, a wavelength, a cadence.</li>
