@@ -98,9 +98,6 @@ python setup.py install --user
 sudo python setup.py install
 </code></pre>
 
-<h2>
-<a name="features" class="anchor" href="#features"><span class="octicon octicon-link"></span></a>Features</h2>
-
 <h3>
 <a name="update-the-module " class="anchor" href="#update-the-module"><span class="octicon octicon-link"></span></a>Update the module </h3>
 
@@ -110,13 +107,23 @@ sudo python setup.py install
 </code></pre>
 
 <h3>
-<a name="remove-the-module " class="anchor" href="#remove-the-module-for-the-system"><span class="octicon octicon-link"></span></a>Remove the module </h3>
+<a name="remove-the-module-for-the-system " class="anchor" href="#remove-the-module-for-the-system"><span class="octicon octicon-link"></span></a>Remove the module for the system</h3>
 
 <pre><code>    $ cd pySitools2_1.0
-easy_install -m pySitools2_1.0
-rm -Rf /usr/local/lib/python2.7/dist-packages/pySitools2_1.0-0.1-py2.7.egg (install fir system)
-rm -Rf ~/.local/lib/python2.7/site-packages/pySitools2_1.0-0.1-py2.7.egg (install for user)
+sudo easy_install -m pySitools2_1.0
+sudo rm -Rf /usr/local/lib/python2.7/dist-packages/pySitools2_1.0*.egg 
 </code></pre>
+
+<h3>
+<a name="remove-the-module-for-the-user " class="anchor" href="#remove-the-module-for-the-user"><span class="octicon octicon-link"></span></a>Remove the module for the user</h3>
+
+<pre><code>    $ cd pySitools2_1.0
+sudo easy_install -m pySitools2_1.0
+sudo rm -Rf ~/.local/lib/python2.7/site-packages/pySitools2_1.0*.egg 
+</code></pre>
+
+<h2>
+<a name="features" class="anchor" href="#features"><span class="octicon octicon-link"></span></a>Features</h2>
 
 <ul>
 <li>Make a search providing a date range, a wavelength, a cadence.</li>
