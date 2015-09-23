@@ -98,30 +98,6 @@ python setup.py install --user
 sudo python setup.py install
 </code></pre>
 
-<h3>
-<a name="update-the-module " class="anchor" href="#update-the-module"><span class="octicon octicon-link"></span></a>Update the module </h3>
-
-<pre><code>    $ cd pySitools2_1.0
-git pull origin master 
-sudo python setup.py install
-</code></pre>
-
-<h3>
-<a name="remove-the-module-for-the-system " class="anchor" href="#remove-the-module-for-the-system"><span class="octicon octicon-link"></span></a>Remove the module for the system</h3>
-
-<pre><code>    $ cd pySitools2_1.0
-sudo easy_install -m pySitools2_1.0
-sudo rm -Rf /usr/local/lib/python2.7/dist-packages/pySitools2_1.0*.egg 
-</code></pre>
-
-<h3>
-<a name="remove-the-module-for-the-user " class="anchor" href="#remove-the-module-for-the-user"><span class="octicon octicon-link"></span></a>Remove the module for the user</h3>
-
-<pre><code>    $ cd pySitools2_1.0
-sudo easy_install -m pySitools2_1.0
-sudo rm -Rf ~/.local/lib/python2.7/site-packages/pySitools2_1.0*.egg 
-</code></pre>
-
 <h2>
 <a name="features" class="anchor" href="#features"><span class="octicon octicon-link"></span></a>Features</h2>
 
@@ -181,6 +157,36 @@ sudo rm -Rf ~/.local/lib/python2.7/site-packages/pySitools2_1.0*.egg
 - Specify the TYPE you want to retrieve , it should be a list among : 'temp','em','width','chi2'
 
     $ gaia_get( GAIA_LIST=gaia_data_list, TARGET_DIR="results", TYPE=['temp','em'] )
+</code></pre>
+
+<h2>
+<a name="Update-the-module" class="anchor" href="#Update-the-module"><span class="octicon octicon-link"></span></a>Update the module</h2>
+
+<h3>
+<a name="update-the-module " class="anchor" href="#update-the-module"><span class="octicon octicon-link"></span></a>Update the module </h3>
+
+<pre><code>    $ cd pySitools2_1.0
+git pull origin master 
+sudo python setup.py install
+</code></pre>
+
+<h2>
+<a name="Remove-the-module" class="anchor" href="#Update-the-module"><span class="octicon octicon-link"></span></a>Remove the module</h2>
+
+<h3>
+<a name="remove-the-module-for-the-system " class="anchor" href="#remove-the-module-for-the-system"><span class="octicon octicon-link"></span></a>Remove the module for the system</h3>
+
+<pre><code>    $ cd pySitools2_1.0
+sudo easy_install -m pySitools2_1.0
+sudo rm -Rf /usr/local/lib/python2.7/dist-packages/pySitools2_1.0*.egg 
+</code></pre>
+
+<h3>
+<a name="remove-the-module-for-the-user " class="anchor" href="#remove-the-module-for-the-user"><span class="octicon octicon-link"></span></a>Remove the module for the user</h3>
+
+<pre><code>    $ cd pySitools2_1.0
+sudo easy_install -m pySitools2_1.0
+sudo rm -Rf ~/.local/lib/python2.7/site-packages/pySitools2_1.0*.egg 
 </code></pre>
 
 <p>NB : For more information see the <a href="http://sdo.ias.u-psud.fr/python/gaia-dem/README_GAIA.txt">README </a> file.</p>
