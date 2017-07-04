@@ -20,7 +20,7 @@ __maintainer__ = "Pablo ALINGERY"
 __email__ = "medoc-contact@ias.u-psud.fr"
 
 from sitools2.core.pySitools2 import *
-from sys import stdout, stderr
+import sys
 from os import path, mkdir
 from collections import Counter
 from future.utils import iteritems
@@ -99,7 +99,7 @@ def media_get(media_data_list=[], target_dir=None, download_type=None, **kwds):
             if item.ias_location != '':
                 item.get_file(target_dir=target_dir, **kwds)
             else:
-                stdout.write("The data for recnum %s is not at IAS \n" %
+                sys.stdout.write("The data for recnum %s is not at IAS \n" %
                                  str(item.recnum))
     else:
         media_get_selection(
@@ -175,7 +175,7 @@ def media_get_selection(server=None,
     ]
     if server is None:
         server = 'http://medoc-sdo.ias.u-psud.fr'
-        stdout.write(
+        sys.stdout.write(
             "server parameter not specified, default value is set: server=%s\n"
             % server)
     if server is not None and server not in allowed_server:
@@ -195,7 +195,7 @@ def media_get_selection(server=None,
         if item.ias_location != '':
             media_data_sunum_list.append(item.sunum)
         else:
-            stdout.write("The data for recnum %s is not at IAS\n" %
+            sys.stdout.write("The data for recnum %s is not at IAS\n" %
                              str(item.recnum))
     sdo_dataset.__getSelection__(
         sunum_list=media_data_sunum_list, download_type=download_type, **kwds)
@@ -327,13 +327,13 @@ def media_search(server=None, dates=None, waves=None, series=None,
     #server
     if server is None and series is None:
         server = 'http://medoc-sdo.ias.u-psud.fr'
-        stdout.write(
+        sys.stdout.write(
             "server parameter not specified, default value is set : "
             "server='http://medoc-sdo.ias.u-psud.fr'\n"
         )
     elif server is None and series.startswith('aia'):
         server = 'http://medoc-sdo.ias.u-psud.fr'
-        stdout.write(
+        sys.stdout.write(
             "server parameter not specified, default value is set : "
             "server='http://medoc-sdo.ias.u-psud.fr'\n"
         )
@@ -381,7 +381,7 @@ def media_search(server=None, dates=None, waves=None, series=None,
         waves = [
             '94', '131', '171', '193', '211', '304', '335', '1600', '1700'
         ]
-        stdout.write(
+        sys.stdout.write(
             "waves parameter not specified, default value is set : "
             "waves = ['94','131','171','193','211','304','335','1600','1700']"
             "\n"
@@ -390,7 +390,7 @@ def media_search(server=None, dates=None, waves=None, series=None,
         waves = [
             '94', '131', '171', '193', '211', '304', '335', '1600', '1700'
         ]
-        stdout.write(
+        sys.stdout.write(
             "waves parameter not specified, 'aia.lev1' default value is set : "
             "waves = ['94','131','171','193','211','304','335','1600','1700'] "
             "\n"
@@ -442,7 +442,7 @@ def media_search(server=None, dates=None, waves=None, series=None,
     ]
     if series is None and '6173' not in waves:
         series = 'aia.lev1'
-        stdout.write(
+        sys.stdout.write(
             "series parameter not specified, default value is set :"
             " series='aia.lev1'\n"
         )
@@ -474,20 +474,20 @@ def media_search(server=None, dates=None, waves=None, series=None,
         }
         if cadence is None:
             cadence = ['12m']
-            stdout.write(
+            sys.stdout.write(
                 "cadence not specified, default value for %s is set :"
                 " cadence=['12m']\n"% series)
 
 #cadence
     if cadence is None and series.startswith('aia.lev1'):
         cadence = ['1m']
-        stdout.write(
+        sys.stdout.write(
             "cadence parameter not specified, default value for aia.lev1 is "
             "set : cadence=[1m]\n"
         )
     elif cadence is None and series.startswith('hmi'):
         cadence = ['12m']
-        stdout.write(
+        sys.stdout.write(
             "cadence parameter not specified, default value for %s is set :"
             " cadence=[1m]\n"% series)
     if type(cadence).__name__ == 'str':
@@ -547,7 +547,7 @@ def media_search(server=None, dates=None, waves=None, series=None,
 #   sdo_dataset=Sdo_IAS_SDO_dataset(server+"/webs_IAS_SDO_HMI_dataset")
 #   sdo_dataset=Sdo_IAS_SDO_dataset(server+"/webs_hmi_dataset")
 #   print sdo_dataset
-    stdout.write("Loading MEDIA Sitools2 client : %s \n" % server)
+    sys.stdout.write("Loading MEDIA Sitools2 client : %s \n" % server)
 
     #Param
     dates_param = [[sdo_dataset.fields_dict['date__obs']], dates_optim,
@@ -626,7 +626,7 @@ def media_search(server=None, dates=None, waves=None, series=None,
     if len(result) != 0:
         for i, data in enumerate(result):
             sdo_data_list.append(Sdo_data(data))
-    stdout.write("%s results returned\n" % len(sdo_data_list))
+    sys.stdout.write("%s results returned\n" % len(sdo_data_list))
     return sdo_data_list
 
 
@@ -684,9 +684,9 @@ def media_metadata_search(
 
     """
 
-    #       stdout.write("Keywords list is : %s \n" % keywords)
-    #       stdout.write("Recnum list is : %s \n" % recnum_list)
-    #       stdout.write("Serie is : %s \n" % series)
+    #       sys.stdout.write("Keywords list is : %s \n" % keywords)
+    #       sys.stdout.write("Recnum list is : %s \n" % recnum_list)
+    #       sys.stdout.write("Serie is : %s \n" % series)
 
     #Allow lower case entries
     for k, v in iteritems(kwds):
@@ -734,7 +734,7 @@ def media_metadata_search(
         #print count_series_list
         #print count_series_list.keys()
         if len(count_series_list.keys()) > 1:
-            stdout.write(
+            sys.stdout.write(
                 "Several series_name detected in media_data_list\n")
             if server is None:
                 server = 'http://idoc-medoc-test.ias.u-psud.fr'
@@ -756,7 +756,7 @@ def media_metadata_search(
 ##server
     if server is None and series.startswith('aia'):
         server = 'http://medoc-sdo.ias.u-psud.fr'
-        stdout.write(
+        sys.stdout.write(
             "server parameter not specified, default value is set : "
             "server='http://medoc-sdo.ias.u-psud.fr'\n"
         )
@@ -853,7 +853,7 @@ def metadata_info(server=None, series='aia.lev1'):
     ##server
     if server is None:
         server = 'http://medoc-sdo.ias.u-psud.fr'
-        stdout.write(
+        sys.stdout.write(
             "server parameter not specified, default value is set : "
             "server='http://medoc-sdo.ias.u-psud.fr'\n"
         )
@@ -950,14 +950,14 @@ class Sdo_ias_sdo_dataset(Dataset):
             special char at the end of target_dir
         """
         if download_type.upper() not in ['TAR', 'ZIP']:
-            stdout.write(
+            sys.stdout.write(
                 "Error get_selection(): %s type not allowed\nOnly TAR or ZIP "
                 "is allowed for parameter download_type"
                 % download_type)
 
         for k, v in iteritems(kwds):
             if k not in ['FILENAME', 'TARGET_DIR', 'QUIET', 'DOWNLOAD_TYPE']:
-                stdout.write(
+                sys.stdout.write(
                     "Error get_file():\n'%s' entry for the search function is"
                     " not allowed"
                     % k)
@@ -975,7 +975,7 @@ class Sdo_ias_sdo_dataset(Dataset):
                 )  #if not specified this is the default name
         if target_dir is not None:
             if not path.isdir(target_dir):
-                stdout.write(
+                sys.stdout.write(
                     "Error get_file():\n'%s' directory did not exist.\n"
                     "Creation directory in progress ..."
                     % target_dir)
@@ -985,7 +985,7 @@ class Sdo_ias_sdo_dataset(Dataset):
             elif target_dir[-1] == '/':
                 filename = target_dir + filename
             else:
-                stdout.write(
+                sys.stdout.write(
                     "Error get_file():\nCheck the param target_dir, "
                     "special char %s at the end of target_dir is not allowed."
                     % target_dir[-1])
@@ -995,7 +995,7 @@ class Sdo_ias_sdo_dataset(Dataset):
         else:
             plugin_id = "plugin03"
         if not quiet:
-            stdout.write("Download %s file in progress ..." %
+            sys.stdout.write("Download %s file in progress ..." %
                              download_type.lower())
 
     #   Dataset.execute_plugin(self,plugin_name=plugin_id, "
@@ -1007,10 +1007,10 @@ class Sdo_ias_sdo_dataset(Dataset):
                 pkey_list=sunum_list,
                 filename=filename)
         except:
-            stdout.write("Error downloading selection %s " % filename)
+            sys.stdout.write("Error downloading selection %s " % filename)
         else:
             if not quiet:
-                stdout.write("Download selection %s completed" % filename)
+                sys.stdout.write("Download selection %s completed" % filename)
 
 
 class Sdo_data():
@@ -1211,7 +1211,7 @@ class Sdo_data():
                 self.wave) + "A_" + self.date_obs.strftime(
                     '%Y-%m-%dT%H-%M-%S.')
         elif filename is not None:
-            stdout.write("filename defined by user : %s\n" % filename)
+            sys.stdout.write("filename defined by user : %s\n" % filename)
             filename_pre = path.splitext(filename)[0]
 
 #Define segment if it does not exist
@@ -1270,7 +1270,7 @@ class Sdo_data():
                 mess_warn = (("Warning get_file(): '%s' directory "
                     "does not exist.\n") % target_dir)
                 mess_warn += "Creation of directory in progress ... \n"
-                stdout.write( mess_warn)
+                sys.stdout.write( mess_warn)
                 mkdir(target_dir)
             if target_dir[-1].isalnum():
                 filename_pre = target_dir + '/' + filename_pre
@@ -1312,12 +1312,12 @@ class Sdo_data():
             try:
                 urlretrieve(file_url, filename_path)
             except:
-                stdout.write("Error downloading %s\n" % filename_path)
+                sys.stdout.write("Error downloading %s\n" % filename_path)
             else:
                 if not quiet:
-                    stdout.write("Download file %s completed\n" %
+                    sys.stdout.write("Download file %s completed\n" %
                                      filename_path)
-                    stdout.flush()
+                    sys.stdout.flush()
 
     def metadata_search(self, server=None, keywords=[], **kwds):
         """Provide metadata information from MEDOC server
